@@ -50,7 +50,7 @@ docker run -it -e MATTERMOST_ENDPOINT='/hubot/incoming' \
     -e MATTERMOST_ICON_URL='https://s3-eu-west-1.amazonaws.com/renanvicente/toy13.png' \
     -e MATTERMOST_HUBOT_USERNAME='matterbot' \
     -e REDIS_URL="redis://redis-server:6379/hubot" \
-    --net hubot.net --name "matterbot" -d lessa/hubot-mattermost:7
+    --net hubot.net --name "matterbot" -d lessa/hubot-mattermost
 ```
 
 sample like:
@@ -62,7 +62,7 @@ docker run -it -e MATTERMOST_ENDPOINT='/hubot/incoming' \
     -e MATTERMOST_ICON_URL='https://s3-eu-west-1.amazonaws.com/renanvicente/toy13.png' \
     -e MATTERMOST_HUBOT_USERNAME='matterbot' \
     -e REDIS_URL="redis://redis-server:6379/hubot" \
-    --net hubot.net --name "matterbot" -d lessa/hubot-mattermost:7
+    --net hubot.net --name "matterbot" -d lessa/hubot-mattermost
 ```
 
 If Mattermost Webhooks and Hubot environment variables are set correct, you should be able to successfully call Hubot in the channel you specified for the Outgoing Hook:
