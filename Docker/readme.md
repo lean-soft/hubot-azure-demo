@@ -23,6 +23,11 @@ Here we bind mattermost default local port 8065 to 8065 at the Docker Host.
 ```sh
 docker run --net hubot.net --name mattermost-dev -d --publish 8065:8065 mattermost/platform
 ```
+Or get image from harbor-bj.devopshub.cn
+
+```sh
+docker run --net hubot.net --name mattermost-dev -d --publish 8065:8065 harbor-bj.devopshub.cn/hubot/mattermost-platform:latest
+```
 
 #### Running Redis container
 
@@ -30,6 +35,12 @@ For redis, we simply run the following and we should be good to go:
 
 ```sh
 docker run --net hubot.net --name redis-server -d redis
+```
+
+Or get image from harbor-bj.devopshub.cn
+
+```sh
+docker run --net hubot.net --name redis-server -d harbor-bj.devopshub.cn/hubot/redis:latest
 ```
 
 ##### Putting them all together
@@ -62,7 +73,7 @@ docker run -it -e MATTERMOST_ENDPOINT='/hubot/incoming' \
     -e MATTERMOST_ICON_URL='https://s3-eu-west-1.amazonaws.com/renanvicente/toy13.png' \
     -e MATTERMOST_HUBOT_USERNAME='matterbot' \
     -e REDIS_URL="redis://redis-server:6379/hubot" \
-    --net hubot.net --name "matterbot" -d lessa/hubot-mattermost
+    --net hubot.net --name "matterbot" -d harbor-bj.devopshub.cn/hubot/hubot-mattermost:1.0
 ```
 
 If Mattermost Webhooks and Hubot environment variables are set correct, you should be able to successfully call Hubot in the channel you specified for the Outgoing Hook:
