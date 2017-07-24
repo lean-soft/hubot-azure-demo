@@ -21,7 +21,7 @@ docker network create hubot.net
 Here we bind mattermost default local port 80 to 8065 at the Docker Host.
 
 ```sh
-docker run --net hubot.net --name mattermost-dev -d --publish 8065:80 mattermost/platform
+docker run --net hubot.net --name mattermost-dev -d --publish 8065:8065 mattermost/platform
 ```
 
 #### Running Redis container
