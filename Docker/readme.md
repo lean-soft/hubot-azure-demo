@@ -18,7 +18,7 @@ docker network create hubot.net
 
 #### Running Mattermost container
 
-Here we bind mattermost default local port 80 to 8065 at the Docker Host.
+Here we bind mattermost default local port 8065 to 8065 at the Docker Host.
 
 ```sh
 docker run --net hubot.net --name mattermost-dev -d --publish 8065:8065 mattermost/platform
