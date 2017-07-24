@@ -37,7 +37,7 @@ docker run --net hubot.net --name redis-server -d redis
 Before we run a Hubot container, you will need to do the following:
 
 * Access http://<dockerhost>:8065/ to set up Mattermost 
-* [Enable Incoming and Outgoing Hooks](https://github.com/mattermost/platform/blob/master/doc/integrations/webhooks/Incoming-Webhooks.md#enabling-incoming-webhooks), then take note of the values
+* [Enable Incoming and Outgoing Hooks](https://docs.mattermost.com/developer/webhooks-incoming.html?highlight=incoming#enabling-incoming-webhooks), then take note of the values
     * Use the following Callback URLs value for Outgoing: ```http://matterbot.hubot.net:8080/hubot/incoming```
     * **If this is your first time using Hubot-mattermost adapter, please familiarize yourself with [environment variables required](https://github.com/renanvicente/hubot-mattermost/blob/master/README.md#environment-variables)**
 
