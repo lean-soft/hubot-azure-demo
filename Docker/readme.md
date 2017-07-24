@@ -45,6 +45,18 @@ With those values taken, you can now launch Hubot by replacing the placeholders 
 
 ```sh
 docker run -it -e MATTERMOST_ENDPOINT='/hubot/incoming' \
+    -e MATTERMOST_INCOME_URL='http://mattermost-dev:8065/hooks/<<3cah7zt3ctdr7rh6d6di7x5jya>>' \
+    -e MATTERMOST_TOKEN='<<qmcjc1rz3bykfgsd6zu8ty5q8w>>' \
+    -e MATTERMOST_ICON_URL='https://s3-eu-west-1.amazonaws.com/renanvicente/toy13.png' \
+    -e MATTERMOST_HUBOT_USERNAME='matterbot' \
+    -e REDIS_URL="redis://redis-server:6379/hubot" \
+    --net hubot.net --name "matterbot" -d lessa/hubot-mattermost:7
+```
+
+sample like:
+
+```sh
+docker run -it -e MATTERMOST_ENDPOINT='/hubot/incoming' \
     -e MATTERMOST_INCOME_URL='http://mattermost-dev:8065/hooks/3cah7zt3ctdr7rh6d6di7x5jya' \
     -e MATTERMOST_TOKEN='qmcjc1rz3bykfgsd6zu8ty5q8w' \
     -e MATTERMOST_ICON_URL='https://s3-eu-west-1.amazonaws.com/renanvicente/toy13.png' \
