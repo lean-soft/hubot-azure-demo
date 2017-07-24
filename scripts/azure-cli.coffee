@@ -36,16 +36,16 @@ execCommand = (msg, cmd) ->
       console.log "WARN: you don't have azure in your $PATH"
 
 module.exports = (robot) ->
-  appId = process.env.HUBOT_AD_APP_ID
-  appAuthKey = process.env.HUBOT_AD_AUTH_KEY
-  appTenantId = process.env.HUBOT_AD_TENANT_ID
+  appId = process.env.HUBOT_AD_APP_ID || "jackyzhou@lean-soft.cn"
+  appAuthKey = process.env.HUBOT_AD_AUTH_KEY || "change to your password"
+  appTenantId = process.env.HUBOT_AD_TENANT_ID || "change to you talentid"
 
-  robot.hear /azure auth$/i, (msg) ->
-    command = "azure login -u #{appId} -p #{appAuthKey} --service-principal --tenant #{appTenantId}"
+  robot.hear /环境 认证$/i, (msg) ->
+    command = "az login -u #{appId} -p #{appAuthKey}"
 
     execCommand msg, command
   
-  robot.hear /azure group list$/i, (msg) ->
+  robot.hear /az group list$/i, (msg) ->
     command = "azure group list"
 
     execCommand msg, command
