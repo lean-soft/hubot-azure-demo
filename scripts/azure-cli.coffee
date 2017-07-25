@@ -24,9 +24,9 @@ module.exports = (robot) ->
   appId = process.env.HUBOT_AD_APP_ID || "jackyzhou@lean-soft.cn"
   appAuthKey = process.env.HUBOT_AD_AUTH_KEY || "change to your password"
   appTenantId = process.env.HUBOT_AD_TENANT_ID || "change to your talentid"
-
+ 
   resourcegroup = "docker-beijing-jackyzhou-training-255-stu1"
-  machinename="test"
+  machines=["operation","test","swarm-master-0","swarm-node-0","swarm-node-1"]
 
   robot.respond /环境 认证$/i, (msg) ->
     command = "az login -u #{appId} -p #{appAuthKey}"
@@ -47,13 +47,18 @@ module.exports = (robot) ->
       console.log "WARN: you don't have azure in your $PATH"
 
   
-  robot.respond /环境 开机$/i, (msg) ->
+  robot.respond /环境 开机 (.*)/i, (msg) ->
     sender   = msg.message.user.name.toLowerCase()
+    machinename = msg.match[1]
     if sender!="leixu"
         msg.reply "对不起，你没有权限操作环境！，请联系管理员"
         return
     else
-        msg.reply "环境启动中，启动成功后会及时提醒您。"
+        if machinename in machines
+            msg.reply "#{machinename}环境启动中，启动成功后会及时提醒您。"
+        else
+            msg.reply "不存在对应的环境:#{machinename}"
+            return
 
     command = "az vm start --resource-group #{resourcegroup} --name #{machinename}"
     @maxBuffer = 1024*1024
@@ -68,14 +73,19 @@ module.exports = (robot) ->
         #msg.send stderr if stderr
         console.log stderr if stderr
 
-  robot.respond /环境 关机$/i, (msg) ->
+  robot.respond /环境 关机 (.*)/i, (msg) ->
     sender   = msg.message.user.name.toLowerCase()
+    machinename = msg.match[1]
     if sender!="leixu"
         msg.reply "对不起，你没有权限操作环境！，请联系管理员"
         return
     else
-        msg.reply "环境关闭中，关闭成功后会及时提醒您。"
-  
+        if machinename in machines
+            msg.reply "#{machinename}环境关闭中，启动成功后会及时提醒您。"
+        else
+            msg.reply "不存在对应的环境:#{machinename}"
+            return
+
     command = "az vm stop --resource-group #{resourcegroup} --name #{machinename}"
     @maxBuffer = 1024*1024
     options =
