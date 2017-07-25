@@ -28,7 +28,7 @@ module.exports = (robot) ->
   resourcegroup = "docker-beijing-jackyzhou-training-255-stu1"
   machinename="test"
 
-  robot.hear /环境 认证$/i, (msg) ->
+  robot.respond /环境 认证$/i, (msg) ->
     command = "az login -u #{appId} -p #{appAuthKey}"
     @maxBuffer = 1024*1024
     options =
@@ -47,7 +47,7 @@ module.exports = (robot) ->
       console.log "WARN: you don't have azure in your $PATH"
 
   
-  robot.hear /环境 开机$/i, (msg) ->
+  robot.respond /环境 开机$/i, (msg) ->
     sender   = msg.message.user.name.toLowerCase()
     if sender!="leixu"
         msg.reply "对不起，你没有权限操作环境！，请联系管理员"
@@ -68,7 +68,7 @@ module.exports = (robot) ->
         #msg.send stderr if stderr
         console.log stderr if stderr
 
-  robot.hear /环境 关机$/i, (msg) ->
+  robot.respond /环境 关机$/i, (msg) ->
     sender   = msg.message.user.name.toLowerCase()
     if sender!="leixu"
         msg.reply "对不起，你没有权限操作环境！，请联系管理员"
