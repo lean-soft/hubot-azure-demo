@@ -48,6 +48,13 @@ module.exports = (robot) ->
 
   
   robot.hear /环境 开机$/i, (msg) ->
+    sender   = msg.message.user.name.toLowerCase()
+    if sender!="leixu"
+        msg.reply "对不起，你没有权限操作环境！，请联系管理员"
+        return
+    else
+        msg.reply "环境启动中，启动成功后会及时提醒您。"
+
     command = "az vm start --resource-group #{resourcegroup} --name #{machinename}"
     @maxBuffer = 1024*1024
     options =
@@ -62,6 +69,13 @@ module.exports = (robot) ->
         console.log stderr if stderr
 
   robot.hear /环境 关机$/i, (msg) ->
+    sender   = msg.message.user.name.toLowerCase()
+    if sender!="leixu"
+        msg.reply "对不起，你没有权限操作环境！，请联系管理员"
+        return
+    else
+        msg.reply "环境关闭中，关闭成功后会及时提醒您。"
+  
     command = "az vm stop --resource-group #{resourcegroup} --name #{machinename}"
     @maxBuffer = 1024*1024
     options =
