@@ -22,7 +22,7 @@ exec = require('child_process').exec
  
 module.exports = (robot) ->
   appId = process.env.HUBOT_AD_APP_ID || "jackyzhou@lean-soft.cn"
-  appAuthKey = process.env.HUBOT_AD_AUTH_KEY || "change to your account password"
+  appAuthKey = process.env.HUBOT_AD_AUTH_KEY || "change to your password"
   appTenantId = process.env.HUBOT_AD_TENANT_ID || "change to your talentid"
 
   resourcegroup = "docker-beijing-jackyzhou-training-255-stu1"
@@ -56,7 +56,8 @@ module.exports = (robot) ->
         #msg.send error if error
         console.log error if error
         data = JSON.parse stdout
-        msg.reply "环境#{machinename}已成功开机！"
+        startTime=data.startTime
+        msg.reply "环境#{machinename}已成功开机，开机时间#{startTime}！"
         #msg.send stderr if stderr
         console.log stderr if stderr
 
@@ -69,6 +70,7 @@ module.exports = (robot) ->
         #msg.send error if error
         console.log error if error
         data = JSON.parse stdout
-        msg.reply "环境#{machinename}已成功关机！"
+        endTime=data.endTime
+        msg.reply "环境#{machinename}已成功关机，关机时间#{endTime}！"
         #msg.send stderr if stderr
         console.log stderr if stderr
