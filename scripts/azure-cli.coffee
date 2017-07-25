@@ -27,6 +27,7 @@ module.exports = (robot) ->
  
   resourcegroup = "docker-beijing-jackyzhou-training-255-stu1"
   machines=["operation","test","swarm-master-0","swarm-node-0","swarm-node-1"]
+  admins=["leixu","jackyzhou","cadenguo","wilsonbo"]
 
   robot.respond /环境 认证$/i, (msg) ->
     command = "az login -u #{appId} -p #{appAuthKey}"
@@ -50,7 +51,7 @@ module.exports = (robot) ->
   robot.respond /环境 开机 (.*)/i, (msg) ->
     sender   = msg.message.user.name.toLowerCase()
     machinename = msg.match[1]
-    if sender!="leixu"
+    if !(sender in admins)
         msg.reply "对不起，你没有权限操作环境！，请联系管理员"
         return
     else
@@ -76,7 +77,7 @@ module.exports = (robot) ->
   robot.respond /环境 关机 (.*)/i, (msg) ->
     sender   = msg.message.user.name.toLowerCase()
     machinename = msg.match[1]
-    if sender!="leixu"
+    if !(sender in admins)
         msg.reply "对不起，你没有权限操作环境！，请联系管理员"
         return
     else
