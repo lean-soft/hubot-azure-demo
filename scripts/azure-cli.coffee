@@ -82,7 +82,7 @@ module.exports = (robot) ->
         return
     else
         if machinename in machines
-            msg.reply "#{machinename}环境关闭中，启动成功后会及时提醒您。"
+            msg.reply "#{machinename}环境关闭中，关闭成功后会及时提醒您。"
         else
             msg.reply "不存在对应的环境:#{machinename}"
             return
