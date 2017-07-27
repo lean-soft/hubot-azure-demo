@@ -16,9 +16,9 @@
 # Author:
 #   ericksond
 #
-
-exec = require('child_process').exec
-
+# Commands:
+#   hubot 环境 关机 - Receive a pug
+#   hubot 环境 认证 - get N pugs
  
 module.exports = (robot) ->
   appId = process.env.HUBOT_AD_APP_ID || "jackyzhou@lean-soft.cn"
